@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | SocialIntel AI{% endblock %}
+
+{% block content %}
+<div class="app-layout">
+    <aside class="sidebar glass-panel">
+        <a class="sidebar-brand" href="{{ url_for('dashboard.dashboard') }}">
+            <i class="bi bi-activity"></i><span>SocialIntel AI</span>
+        </a>
+        <nav class="sidebar-nav">
+            <a class="active" href="#"><i class="bi bi-grid-1x2"></i>Dashboard</a>
+            <a href="#sentiment"><i class="bi bi-pie-chart"></i>Sentiment</a>
+            <a href="#trends"><i class="bi bi-hash"></i>Trends</a>
+            <a href="#risk"><i class="bi bi-shield-lock"></i>Risk Detection</a>
+            <a href="#reports"><i class="bi bi-download"></i>Reports</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="btn btn-icon w-100 mb-2" id="themeToggle">
+                <i class="bi bi-moon-stars me-2"></i>Dark Mode
+            </button>
+            <a class="btn btn-outline-light w-100" href="{{ url_for('auth.logout') }}">Logout</a>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p class="eyebrow">User Dashboard</p>
+                <h1>Welcome, {{ user_name }}</h1>
+            </div>
+            <form method="post" enctype="multipart/form-data" class="upload-box glass-panel">
+                <input class="form-control" type="file" name="csv_file" accept=".csv" required>
+                <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-cloud-upload me-1"></i>Upload CSV
+                </button>
+            </form>
+        </header>
+
+        <section class="metric-grid">
+            <div class="metric-card animated-card">
+                <span>Total Posts</span>
+                <strong>{{ results.summary.total_posts }}</strong>
+                <i class="bi bi-chat-square-text"></i>
+            </div>
+            <div class="metric-card animated-card">
+                <span>Positive</span>
+                <strong>{{ results.summary.positive_percent }}%</strong>
+                <i class="bi bi-emoji-smile"></i>
+            </div>
+            <div class="metric-card animated-card">
+                <span>Negative</span>
+                <strong>{{ results.summary.negative_percent }}%</strong>
+                <i class="bi bi-emoji-frown"></i>
+            </div>
+            <div class="metric-card animated-card">
+                <span>Fake Accounts</span>
+                <strong>{{ results.summary.fake_percent }}%</strong>
+                <i class="bi bi-person-x"></i>
+            </div>
+            <div class="metric-card animated-card">
+                <span>Spam</span>
+                <strong>{{ results.summary.spam_percent }}%</strong>
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+        </section>
+
+        <section id="sentiment" class="row g-4 mt-1">
+            <div class="col-xl-5">
+                <div class="content-panel glass-panel">
+                    <div class="panel-title">
+                        <h2>Sentiment Analysis</h2>
+                    </div>
+                    <canvas id="sentimentPie"></canvas>
+                </div>
+            </div>
+            <div class="col-xl-7">
+                <div class="content-panel glass-panel">
+                    <div class="panel-title">
+                        <h2>Sentiment Score Timeline</h2>
+                    </div>
+                    <canvas id="sentimentLine"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="trends" class="row g-4 mt-1">
+            <div class="col-xl-6">
+                <div class="content-panel glass-panel">
+                    <div class="panel-title">
+                        <h2>Trending Hashtags</h2>
+                    </div>
+                    <canvas id="hashtagChart"></canvas>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="content-panel glass-panel">
+                    <div class="panel-title">
+                        <h2>Trending Keywords</h2>
+                    </div>
+                    <div class="keyword-cloud">
+                        {% for item in results.keywords %}
+                            <span style="--weight: {{ item.count }}">{{ item.word }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if results.wordcloud_file %}
+                        <img class="wordcloud-img" src="{{ url_for('static', filename=results.wordcloud_file) }}" alt="Word cloud">
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <section id="risk" class="row g-4 mt-1">
+            <div class="col-xl-6">
+                <div class="content-panel glass-panel">
+                    <div class="panel-title">
+                        <h2>Fake Account Detection</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle dashboard-table">
+                            <thead>
+                                <tr><th>User</th><th>Risk</th><th>Score</th><th>Reason</th></tr>
+                            </thead>
+                            <tbody>
+                                {% for item in results.fake %}
+                                <tr>
+                                    <td>@{{ item.username }}</td>
+                                    <td><span class="risk-badge {{ item.risk_level|lower }}">{{ item.risk_level }}</span></td>
+                                    <td>{{ item.score }}</td>
+                                    <td>{{ item.reasons|join(", ") }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="content-panel glass-panel">
+                    <div class="panel-title">
+                        <h2>Spam Detection</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle dashboard-table">
+                            <thead>
+                                <tr><th>User</th><th>Risk</th><th>Score</th><th>Reason</th></tr>
+                            </thead>
+                            <tbody>
+                                {% for item in results.spam %}
+                                <tr>
+                                    <td>@{{ item.username }}</td>
+                                    <td><span class="risk-badge {{ item.risk_level|lower }}">{{ item.risk_level }}</span></td>
+                                    <td>{{ item.score }}</td>
+                                    <td>{{ item.reasons|join(", ") }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reports" class="content-panel glass-panel mt-4">
+            <div class="panel-title">
+                <h2>Reports & Export</h2>
+            </div>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="{{ url_for('dashboard.download_csv') }}" class="btn btn-primary">
+                    <i class="bi bi-filetype-csv me-1"></i>Download CSV
+                </a>
+                <a href="{{ url_for('reports.download_pdf') }}" class="btn btn-glass">
+                    <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF Report
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    window.dashboardData = {
+        sentimentCounts: [
+            {{ results.summary.positive_count }},
+            {{ results.summary.negative_count }},
+            {{ results.summary.neutral_count }}
+        ],
+        sentimentScores: {{ results.sentiment | map(attribute='score') | list | tojson }},
+        hashtags: {{ results.hashtags | tojson }}
+    };
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

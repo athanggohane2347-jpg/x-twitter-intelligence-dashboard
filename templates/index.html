@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}AI-Powered Social Media Intelligence Dashboard{% endblock %}
+
+{% block content %}
+<main class="landing-shell">
+    <nav class="navbar navbar-expand-lg landing-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="bi bi-activity me-2"></i>SocialIntel AI
+            </a>
+            <div class="ms-auto d-flex gap-2">
+                <button class="btn btn-icon" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="bi bi-moon-stars"></i>
+                </button>
+                <a class="btn btn-outline-light" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="container hero-section">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="hero-badge">Final-Year Portfolio Project</span>
+                <h1 class="hero-title">AI-Powered Social Media Intelligence Dashboard</h1>
+                <p class="hero-copy">
+                    Analyze public conversations, detect sentiment, identify spam behavior,
+                    discover trending hashtags, and generate executive-ready reports from CSV data.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">
+                        Launch Dashboard
+                    </a>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-glass btn-lg">
+                        View Demo
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-dashboard glass-panel">
+                    <div class="dashboard-preview-header">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="preview-card accent-green">
+                                <p>Positive</p>
+                                <h3>68%</h3>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="preview-card accent-red">
+                                <p>Spam Risk</p>
+                                <h3>14%</h3>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="preview-chart">
+                                <span style="height: 46%"></span>
+                                <span style="height: 68%"></span>
+                                <span style="height: 38%"></span>
+                                <span style="height: 82%"></span>
+                                <span style="height: 55%"></span>
+                                <span style="height: 74%"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container pb-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-pie-chart"></i>
+                    <h5>Sentiment Intelligence</h5>
+                    <p>Measure positive, negative, and neutral emotions with clear visual charts.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-shield-check"></i>
+                    <h5>Risk Detection</h5>
+                    <p>Flag spam, suspicious accounts, and bot-like activity from profile signals.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    <h5>Reports</h5>
+                    <p>Export CSV and PDF reports for GitHub demos, reviews, and presentations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
