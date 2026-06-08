@@ -1,40 +1,272 @@
-# AI-Powered Social Media Intelligence Dashboard
+# 🚀 AI-Powered X/Twitter Social Media Intelligence Dashboard
 
-A modern Flask, Bootstrap 5, Chart.js, SQLite, and Python analytics project that rebuilds an old R Shiny Twitter dashboard as a professional social media intelligence product.
+> Transform raw social media data into actionable intelligence using AI, Machine Learning, and Interactive Analytics.
 
-## Features
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Flask](https://img.shields.io/badge/Flask-Web_App-black)
+![SQLite](https://img.shields.io/badge/SQLite-Database-blue)
+![Machine Learning](https://img.shields.io/badge/Machine-Learning-green)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple)
+![Chart.js](https://img.shields.io/badge/Chart.js-Analytics-orange)
 
-- Modern landing page
-- Login and registration
-- User dashboard
-- CSV upload
-- Sentiment analysis
-- Hashtag analysis
-- Trending keywords
-- Word cloud
-- Fake account detection
-- Spam detection
-- CSV export
-- PDF report generation
-- Dark mode
-- Responsive SaaS dashboard UI
+---
 
-## Tech Stack
+## 📌 Project Overview
 
-- Frontend: HTML5, CSS3, JavaScript, Bootstrap 5, Chart.js
-- Backend: Python Flask
-- Database: SQLite
-- Analytics: Pandas, NLTK, TextBlob, Scikit-learn
-- Reports: ReportLab
+The **AI-Powered X/Twitter Social Media Intelligence Dashboard** is a full-stack analytics platform designed to monitor, analyze, and visualize social media data.
 
-## Setup
+Built using **Flask, SQLite, Pandas, NLTK, TextBlob, Scikit-Learn, Bootstrap 5, and Chart.js**, the dashboard provides advanced social media intelligence including:
+
+* Sentiment Analysis
+* Hashtag Tracking
+* Trending Keyword Detection
+* Fake Account Identification
+* Spam Detection
+* Word Cloud Generation
+* PDF Reporting
+* Interactive Analytics Dashboards
+
+This project modernizes traditional social media analytics by combining **Artificial Intelligence**, **Machine Learning**, and **Data Visualization** into a single platform.
+
+---
+
+# ✨ Key Features
+
+## 🔐 Authentication System
+
+* User Registration
+* Secure Login
+* Session Management
+* Protected Dashboard Access
+
+---
+
+## 📊 Social Media Analytics
+
+### 😊 Sentiment Analysis
+
+Analyze social media posts and classify them as:
+
+* Positive
+* Negative
+* Neutral
+
+Features:
+
+* Sentiment Score
+* Emotion Classification
+* Pie Chart Visualization
+* Trend Analysis
+
+---
+
+### #️⃣ Hashtag Intelligence
+
+Discover:
+
+* Most Used Hashtags
+* Trending Topics
+* Engagement Opportunities
+
+---
+
+### 🔥 Trending Keyword Detection
+
+Automatically identify:
+
+* Viral Keywords
+* Trending Discussions
+* Popular Topics
+
+---
+
+### ☁️ Word Cloud Generation
+
+Generate visual word clouds from uploaded datasets to instantly identify dominant discussion themes.
+
+---
+
+## 🛡️ Risk Analysis Engine
+
+### 🤖 Fake Account Detection
+
+Detect suspicious accounts using:
+
+* Followers/Following Ratio
+* Account Age
+* Activity Patterns
+* Posting Behavior
+
+---
+
+### 🚫 Spam Detection
+
+Identify:
+
+* Spam Posts
+* Promotional Bots
+* Suspicious Content
+
+---
+
+## 📁 Data Management
+
+### CSV Upload
+
+Upload datasets containing:
+
+* Tweets
+* Posts
+* User Data
+
+Supported Fields:
+
+```csv
+username,text,followers,following,account_age_days,posts_count
+```
+
+### CSV Export
+
+Export processed analytics results.
+
+---
+
+### 📄 PDF Report Generation
+
+Generate professional downloadable reports containing:
+
+* Sentiment Results
+* Risk Analysis
+* Hashtag Statistics
+* Keyword Trends
+
+---
+
+## 🌙 Modern User Experience
+
+### Dashboard Features
+
+* Glassmorphism UI
+* Dark Mode
+* Responsive Design
+* Interactive Charts
+* Animated Cards
+* Mobile Friendly Layout
+* SaaS Inspired Interface
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* Bootstrap 5
+* Chart.js
+
+## Backend
+
+* Python Flask
+
+## Database
+
+* SQLite
+
+## Machine Learning & NLP
+
+* Pandas
+* NLTK
+* TextBlob
+* Scikit-Learn
+* WordCloud
+
+## Reporting
+
+* ReportLab
+
+---
+
+# 📂 Project Structure
 
 ```bash
-cd social-media-dashboard
+x-twitter-intelligence-dashboard/
+
+├── app.py
+├── database.py
+├── auth_routes.py
+├── dashboard_routes.py
+├── report_routes.py
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   └── dashboard.html
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   └── js/
+│       ├── dashboard.js
+│       └── theme.js
+│
+├── sentiment.py
+├── spam_detection.py
+├── fake_account_detection.py
+├── hashtag_analysis.py
+├── keyword_analysis.py
+│
+├── uploads/
+├── reports/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# ⚙️ Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/x-twitter-intelligence-dashboard.git
+
+cd x-twitter-intelligence-dashboard
+```
+
+### Create Virtual Environment
+
+```bash
 python -m venv venv
+```
+
+### Activate Environment
+
+Windows:
+
+```bash
 venv\Scripts\activate
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+### Download NLP Resources
+
+```bash
 python -m textblob.download_corpora
+```
+
+### Run Application
+
+```bash
 python app.py
 ```
 
@@ -44,23 +276,29 @@ Open:
 http://127.0.0.1:5000
 ```
 
-## CSV Format
+---
 
-Upload a CSV with at least one of these text columns:
+# 📸 Project Screenshots
 
-```text
-text
-tweet
-post
-```
+## 🏠 Landing Page
 
-Optional account columns:
+![Landing Page](screenshots/Screenshot 2026-06-09 012538.png)
 
-```text
-username, followers, following, account_age_days, posts_count
-```
+## 🔐 Registration Page
 
-Example:
+![Register](screenshots/Screenshot 2026-06-09 012422.png)
+
+## 📊 Dashboard
+
+![Dashboard](screenshots/Screenshot 2026-06-09 012408.png)
+
+## 📈 Analytics
+
+![Analytics](screenshots/Screenshot 2026-06-09 012624.png)
+
+---
+
+# 📈 Sample Dataset
 
 ```csv
 username,text,followers,following,account_age_days,posts_count
@@ -68,17 +306,33 @@ brand_user,"Great update today with #AI and #Marketing",1200,300,600,150
 promo_bot,"Win free cash now click this link",8,900,5,2
 ```
 
-## GitHub Commands
+---
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/social-media-dashboard.git
-git push -u origin main
-```
+# 🎯 Future Enhancements
 
-## Notes
+* Real-Time X API Integration
+* AI Chat Assistant
+* Predictive Trend Forecasting
+* Multi-Platform Social Media Monitoring
+* Advanced Machine Learning Models
+* Live Streaming Analytics
 
-`database.db` is created automatically when the Flask app starts.
+---
+
+# 👨‍💻 Author
+
+**Athang Gohane**
+
+Passionate about:
+
+* Full Stack Development
+* Artificial Intelligence
+* Data Analytics
+* Machine Learning
+* Modern Web Applications
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
