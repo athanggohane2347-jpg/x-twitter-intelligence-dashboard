@@ -282,19 +282,19 @@ http://127.0.0.1:5000
 
 ## 🏠 Landing Page
 
-![Landing Page](screenshots/Screenshot 2026-06-09 012538.png)
+![Landing Page](screenshots/Screenshot%202026-06-09%20012408.png)
 
-## 🔐 Registration Page
+## 🔐 User Registration
 
-![Register](screenshots/Screenshot 2026-06-09 012422.png)
+![Registration Page](screenshots/Screenshot%202026-06-09%20012422.png)
 
-## 📊 Dashboard
+## 📊 Dashboard Overview
 
-![Dashboard](screenshots/Screenshot 2026-06-09 012408.png)
+![Dashboard](screenshots/Screenshot%202026-06-09%20012538.png)
 
-## 📈 Analytics
+## 📈 Analytics & Intelligence
 
-![Analytics](screenshots/Screenshot 2026-06-09 012624.png)
+![Analytics](screenshots/Screenshot%202026-06-09%20012624.png)
 
 ---
 
