@@ -125,6 +125,27 @@ Supported Fields:
 username,text,followers,following,account_age_days,posts_count
 ```
 
+### Xquik Export Import
+
+Reviewed X/Twitter exports from Xquik can be converted into the same CSV upload
+schema before analysis:
+
+```bash
+python xquik_csv.py examples/xquik-posts.jsonl -o uploads/xquik_posts.csv
+```
+
+The converter accepts JSON, JSONL, NDJSON, or CSV rows and maps common Xquik
+post fields such as `text`, `tweetText`, `replyText`, `content`, `username`,
+`author.username`, `followersCount`, `followingCount`, and `statusesCount` into
+the dashboard's upload columns. After conversion, upload
+`uploads/xquik_posts.csv` from the dashboard to run the existing sentiment,
+hashtag, spam, fake-account, word-cloud, CSV export, and PDF report workflow.
+
+Source: https://github.com/Xquik-dev/x-twitter-scraper
+
+Xquik is an independent third-party service. Not affiliated with X Corp.
+"Twitter" and "X" are trademarks of X Corp.
+
 ### CSV Export
 
 Export processed analytics results.
