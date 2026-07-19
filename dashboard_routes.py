@@ -10,6 +10,7 @@ from fake_account_detection import detect_fake_accounts
 from hashtag_analysis import analyze_hashtags
 from keyword_analysis import analyze_keywords, build_wordcloud_image
 from database import get_recent_analyses, save_analysis
+from csv_export import serialize_csv_row
 
 dashboard_bp = Blueprint("dashboard", __name__)
 ALLOWED_EXTENSIONS = {"csv"}
@@ -186,14 +187,18 @@ def download_csv():
     results = analyze_posts(posts)
 
     def generate():
-        yield "username,text,sentiment,spam_risk,fake_risk\n"
+        yield serialize_csv_row(
+            ["username", "text", "sentiment", "spam_risk", "fake_risk"]
+        )
         for index, post in enumerate(results["posts"]):
-            yield (
-                f"\"{post['username']}\","
-                f"\"{post['text'].replace('\"', '\"\"')}\","
-                f"\"{results['sentiment'][index]['label']}\","
-                f"\"{results['spam'][index]['risk_level']}\","
-                f"\"{results['fake'][index]['risk_level']}\"\n"
+            yield serialize_csv_row(
+                [
+                    post["username"],
+                    post["text"],
+                    results["sentiment"][index]["label"],
+                    results["spam"][index]["risk_level"],
+                    results["fake"][index]["risk_level"],
+                ]
             )
 
     return Response(
